@@ -1,8 +1,8 @@
 var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
-
 var jwt = require('jsonwebtoken');
+
 var settings = require('./settings');
 var httpMsg = require('./core/httpMsg');
 var user = require('./controller/user');
@@ -57,6 +57,22 @@ apiRoute.get('/', function(req, resp) {
 
 apiRoute.get('/users', function(req, resp) {
     user.getList(req, resp);
+});
+
+apiRoute.get('/users/:id', function(req, resp) {
+	user.get(req, resp, req.params.id);
+});
+
+apiRoute.post('/users', function(req, resp) {
+	user.add(req, resp);
+});
+
+apiRoute.put('/users', function(req, resp) {
+	user.update(req, resp);
+});
+
+apiRoute.delete('/users', function(req, resp) {
+	user.delete(req, resp);
 });
 
 app.use('/api', apiRoute);
