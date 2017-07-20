@@ -50,4 +50,13 @@ exports.showHome = function (req, resp) {
     resp.write(JSON.stringify([{ url: "/users", operations: "GET", description: "To List all users." }, { url: "/users/<id>", operations: "GET", description: "To Search a user." }]));
     resp.end();
 };
+
+exports.sendAuthFail = function (req, resp, errText) {
+    resp.writeHead(200, { "Content-Type": "application/json" });
+    resp.write(JSON.stringify({
+        success: false,
+        errorText: errText
+    }));
+    resp.end();
+};
 //# sourceMappingURL=httpMsg.js.map
